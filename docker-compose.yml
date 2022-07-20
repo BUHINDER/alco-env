@@ -1,0 +1,17 @@
+version: "3.2"
+
+services:
+  alcoholic-db:
+    container_name: alcoholic_db
+    image: postgres:13.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/usr/share/postgres/data
+      - ./init_db:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres-data:
