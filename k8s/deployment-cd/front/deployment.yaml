@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      buhinder: web
+  template:
+    metadata:
+      labels:
+        buhinder: web
+    spec:
+      containers:
+        - name: content-application
+          image: "kirill1mol/buhinder_web:1"
+          ports:
+            - containerPort: 3000
+          command:
+            - npm
+          args:
+            - "start"
+      imagePullSecrets:
+        - name: registrypullsecret
